@@ -6,15 +6,19 @@
   <table class="table">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">email</th>
+          <th scope="col">Titolo</th>
+          <th scope="col">Contenuto</th>
+          <th scope="col">Slug</th>
+          <th scope="col">Immagine</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($users as $user)
+        @foreach($articles as $article)
         <tr>
-          <td>{{$user->name}}</td>
-          <td>{{$user->email}}</td>
+          <td>{{$article->title}}</td>
+          <td>{{$article->content}}</td>
+          <td>{{$article->slug}}</td>
+          <td>{{$article->image}}</td>
         </tr>
         @endforeach
       </tbody>

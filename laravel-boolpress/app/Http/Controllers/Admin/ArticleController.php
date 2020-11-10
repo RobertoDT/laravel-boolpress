@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 //importo controller di base
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Article;
 use App\User;
 
@@ -17,9 +18,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $user_id = Auth::id();
 
-        return view("admin.index", compact("users"));
+        $articles = Article::where("user_id", $user_id)->get();
+
+        return view("admin.index", compact("articles"));
     }
 
     /**
@@ -29,7 +32,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.create");
     }
 
     /**
@@ -40,7 +43,9 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      echo "ciao";
+
+      // return redirect()->route('books.show', $book);
     }
 
     /**
