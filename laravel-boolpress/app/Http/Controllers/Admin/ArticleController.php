@@ -43,9 +43,30 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-      echo "ciao";
+      $data = $request->all();
 
-      // return redirect()->route('books.show', $book);
+
+      //validation
+      $request->validate([
+        "title" => "required",
+        "content" => "required",
+        "slug" => "required|unique:articles",
+        // "image" => "image"
+      ]);
+
+      $newArticle = new Article;
+
+      $newArticle->user_id = Auth::id();
+      $newArticle->title = $data["title"];
+      $newArticle->content = $data["content"];
+      $newArticle->slug = $data["slug"];
+
+      //salvataggio
+      $newArticle->save();
+
+      //redirect verso la show
+      return redirect()->route("admin.articles.show", $newArticle);
+
     }
 
     /**
@@ -56,7 +77,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+
+        return view("admin.show", compact("article"));
     }
 
     /**

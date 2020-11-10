@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="container">
-  <form action="{{route('articles.store')}}" method="POST" enctype="multipart/form-data">
+  <form action="{{route('admin.articles.store')}}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @method("POST")
@@ -22,12 +22,22 @@
       <input type="text" class="form-control" id="slug" name="slug" placeholder="Inserisci lo slug">
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="image">Immagine</label>
       <input type="file" class="form-control" id="image" name="image" placeholder="Inserisci l'immagine" accept="image/*">
-    </div>
+    </div> -->
 
     <button type="submit" class="btn btn-primary">CREA POST</button>
   </form>
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 </div>
 @endsection
