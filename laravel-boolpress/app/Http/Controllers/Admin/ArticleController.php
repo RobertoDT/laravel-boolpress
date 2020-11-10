@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //importo controller di base
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Article;
 use App\User;
 
@@ -90,7 +91,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        //cerco sempre l'id dell'articolo che voglio modificare
+        $article = Article::find($id);
+
+        return view("admin.edit", compact("article"));
     }
 
     /**
@@ -102,7 +106,31 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        //validazione
+        $request->validate([
+          "title" => "required",
+          "content" => "required",
+          "slug" => [
+            "required",
+            Rule::unique("articles")->ignore($id)
+          ]
+        ]);
+
+        //troviamo l'id dell'articolo da modificare
+        $article = Article::find($id);
+
+        //permettiamo la modifica dell'articolo
+        $article->title = $data["title"];
+        $article->content = $data["content"];
+        $article->slug = $data["slug"];
+
+        //ora facciamo l'update del nuovo articolo
+        $article->update();
+
+        //ritorniamo alla rotta show del singolo articolo modificato
+        return redirect()->route("admin.articles.show", $article);
     }
 
     /**
@@ -113,6 +141,13 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //cercare l'id dell'articolo
+        $article = Article::find($id);
+
+        //cancello l'articolo
+        $article->delete();
+
+        //ritorno alla rotta index
+        return redirect()->route("admin.articles.index", $article);
     }
 }

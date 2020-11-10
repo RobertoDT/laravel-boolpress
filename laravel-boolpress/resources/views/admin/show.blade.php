@@ -8,6 +8,7 @@
           <th scope="col">Autore</th>
           <th scope="col">Titolo</th>
           <th scope="col">Contenuto</th>
+          <th scope="col">Slug</th>
         </tr>
       </thead>
       <tbody>
@@ -15,8 +16,16 @@
           <td>{{$article->user->name}}</td>
           <td>{{$article->title}}</td>
           <td>{{$article->content}}</td>
+          <td>{{$article->slug}}</td>
         </tr>
       </tbody>
   </table>
+  
+  <form class="" action="{{route('admin.articles.destroy', $article)}}" method="POST">
+    @csrf
+    @method("DELETE")
+
+    <button type="submit" class="btn btn-danger">ELIMINA POST</button>
+  </form>
 </div>
 @endsection
