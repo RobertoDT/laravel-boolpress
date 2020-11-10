@@ -6,26 +6,26 @@
 
     @csrf
     @method("PUT")
-    
+
     <div class="form-group">
       <label for="title">Titolo</label>
-      <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci il titolo">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Inserisci il titolo" value="{{old('title')}}">
     </div>
 
     <div class="form-group">
       <label for="content">Contenuto</label>
-      <textarea class="form-control" id="content" name="content" placeholder="Inserisci il contenuto" rows="4" cols="50"></textarea>
+      <textarea class="form-control" id="content" name="content" placeholder="Inserisci il contenuto" rows="4" cols="50" value="{{old('content')}}"></textarea>
     </div>
 
     <div class="form-group">
       <label for="slug">Slug</label>
-      <input type="text" class="form-control" id="slug" name="slug" placeholder="Inserisci lo slug">
+      <input type="text" class="form-control" id="slug" name="slug" placeholder="Inserisci lo slug" value="{{old('slug')}}">
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label for="image">Immagine</label>
       <input type="file" class="form-control" id="image" name="image" placeholder="Inserisci l'immagine" accept="image/*">
-    </div> -->
+    </div>
 
     <button type="submit" class="btn btn-primary">MODIFICA POST</button>
   </form>

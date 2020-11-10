@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 use App\Article;
 use App\User;
 
@@ -46,14 +47,15 @@ class ArticleController extends Controller
     {
       $data = $request->all();
 
-
       //validation
       $request->validate([
         "title" => "required",
         "content" => "required",
         "slug" => "required|unique:articles",
-        // "image" => "image"
+        "image" => "image"
       ]);
+
+      $path = Storage::disk("public")->put("images", $data["image"]);
 
       $newArticle = new Article;
 
@@ -61,6 +63,7 @@ class ArticleController extends Controller
       $newArticle->title = $data["title"];
       $newArticle->content = $data["content"];
       $newArticle->slug = $data["slug"];
+      $newArticle->image = $path;
 
       //salvataggio
       $newArticle->save();
@@ -115,9 +118,11 @@ class ArticleController extends Controller
           "slug" => [
             "required",
             Rule::unique("articles")->ignore($id)
-          ]
+          ],
+          "image" => "image"
         ]);
 
+        $path = Storage::disk("public")->put("images", $data["image"]);
         //troviamo l'id dell'articolo da modificare
         $article = Article::find($id);
 
@@ -125,12 +130,12 @@ class ArticleController extends Controller
         $article->title = $data["title"];
         $article->content = $data["content"];
         $article->slug = $data["slug"];
-
+        $article->image = $path;
         //ora facciamo l'update del nuovo articolo
         $article->update();
 
         //ritorniamo alla rotta show del singolo articolo modificato
-        return redirect()->route("admin.articles.show", $article);
+        return redirect()->route("admin.articles.index", $article);
     }
 
     /**

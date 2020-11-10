@@ -19,7 +19,15 @@
           <td>{{$article->title}}</td>
           <td>{{$article->content}}</td>
           <td>{{$article->slug}}</td>
-          <td>{{$article->image}}</td>
+          <td>
+            <img src="{{asset('storage/'.$article->image)}}" alt="" width="200px" height="300px">
+          </td>
+          <td>
+            <a href="{{route('admin.articles.show', $article)}}">VISUALIZZA ARTICOLO</a>
+          </td>
+          <td>
+            <a href="{{route('admin.articles.edit', $article)}}">MODIFICA POST</a>
+          </td>
           <td>
             <form class="" action="{{route('admin.articles.destroy', $article)}}" method="POST">
               @csrf
@@ -32,6 +40,7 @@
         @endforeach
       </tbody>
   </table>
+  <a href="{{route('admin.articles.create')}}">CREA NUOVO ARTICOLO</a>
 </div>
 
 @endsection
