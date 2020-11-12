@@ -1,0 +1,28 @@
+.create{
+  margin-bottom: 40px;
+}
+
+.main-list{
+  position: relative;
+
+  li{
+    list-style: none;
+  }
+
+  .article-image img{
+    width: 100%;
+  }
+
+  .title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    color: red;
+  }
+
+  .article-tag span {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}

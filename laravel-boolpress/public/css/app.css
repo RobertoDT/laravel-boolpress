@@ -10903,3 +10903,32 @@ a.text-dark:focus {
   }
 }
 
+.create {
+  margin-bottom: 40px;
+}
+
+.main-list {
+  position: relative;
+}
+
+.main-list li {
+  list-style: none;
+}
+
+.main-list .article-image img {
+  width: 100%;
+}
+
+.main-list .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  color: red;
+}
+
+.main-list .article-tag span {
+  font-weight: bold;
+  font-size: 20px;
+}
+

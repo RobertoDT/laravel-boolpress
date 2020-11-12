@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
 use App\Article;
 use App\User;
 
@@ -67,6 +69,9 @@ class ArticleController extends Controller
 
       //salvataggio
       $newArticle->save();
+
+      //invio di email
+      Mail::to('mail@mail.it')->send(new SendNewMail($newArticle));
 
       //redirect verso la show
       return redirect()->route("admin.articles.show", $newArticle);

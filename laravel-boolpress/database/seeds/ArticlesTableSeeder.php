@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Article;
 use App\User;
+use App\Tag;
 
 class ArticlesTableSeeder extends Seeder
 {
@@ -26,6 +27,10 @@ class ArticlesTableSeeder extends Seeder
         $newArticle->slug = Str::of($newArticle->title)->slug("-");
 
         $newArticle->save();
+
+        $tags = Tag::inRandomOrder()->limit(5)->get();
+
+        $newArticle->tags()->sync($tags);
       }
     }
 }
