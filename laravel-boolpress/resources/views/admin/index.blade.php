@@ -9,7 +9,11 @@
   @foreach($articles as $article)
   <div class="main-list">
     <div class="article-image">
-      <img src="{{asset('storage/'.$article->image)}}" alt="" width="200px" height="300px">
+      @if($article->image == null)
+        <img src="https://via.placeholder.com/300.png/09f/fff%20C/O%20https://placeholder.com/" alt="">
+      @else
+        <img src="{{asset('storage/'.$article->image)}}" alt="" width="200px" height="300px">
+      @endif
     </div>
     <h1 class="title">{{$article->title}}</h1>
     <div class="content">

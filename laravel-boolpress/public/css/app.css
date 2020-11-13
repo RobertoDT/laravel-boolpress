@@ -10917,6 +10917,7 @@ a.text-dark:focus {
 
 .main-list .article-image img {
   width: 100%;
+  height: 500px;
 }
 
 .main-list .title {
@@ -10924,7 +10925,7 @@ a.text-dark:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -150%);
-  color: red;
+  color: green;
 }
 
 .main-list .article-tag span {
