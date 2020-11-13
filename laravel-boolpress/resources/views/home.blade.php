@@ -17,6 +17,8 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+
+            <a href="{{route('admin.articles.index')}}"><button type="button" class="btn btn-primary">GUARDA I TUOI ARTICOLI</button></a>
         </div>
     </div>
 </div>

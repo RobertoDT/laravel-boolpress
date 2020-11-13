@@ -10924,7 +10924,7 @@ a.text-dark:focus {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -70%);
   color: green;
 }
 

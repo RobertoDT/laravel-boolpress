@@ -36,13 +36,13 @@
 
   </div>
       <a href="{{route('admin.articles.show', $article)}}"><button type="submit" class="btn btn-primary">VISUALIZZA ARTICOLO</button></a>
-      <a href="{{route('admin.articles.edit', $article)}}"><button type="submit" class="btn btn-primary">MODIFICA POST</button></a>
+      <a href="{{route('admin.articles.edit', $article)}}"><button type="submit" class="btn btn-primary">MODIFICA ARTICOLO</button></a>
 
       <form class="" action="{{route('admin.articles.destroy', $article)}}" method="POST">
         @csrf
         @method("DELETE")
 
-        <button type="submit" class="btn btn-danger">ELIMINA POST</button>
+        <button type="submit" class="btn btn-danger">ELIMINA</button>
       </form>
     <hr>
   @endforeach
